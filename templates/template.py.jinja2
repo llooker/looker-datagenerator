@@ -1,0 +1,57 @@
+from utils.DataUtil import DataUtil
+from faker import Faker
+
+import dataclasses
+import itertools
+import json
+
+fake = Faker()
+{%- for table in tables -%}
+{% set unset_fields = {} %}
+{% set str_out = "" %}
+{{ table.lower() }}_out = []
+@dataclasses.dataclass
+class {{ table }}(DataUtil):
+{%- for key, value in tables[table].items() %}
+{%- if key == "id" %}
+    {{ key }}: {{ value["type"] }} = dataclasses.field(default_factory=itertools.count(start=1).__next__)
+{%- else %}
+    {{ key }}: {{ value["type"] }} = dataclasses.field(init=False)
+    {%- set x=unset_fields.__setitem__(key, value) -%}
+{%- endif %}
+{%- endfor %}
+
+    def __post_init__(self):
+    {%- for key, value in unset_fields.items() %}
+    {%- if key == "first_name" %}
+        self.{{ key }} = fake.first_name()
+    {%- endif %}
+    {%- if key == "last_name" %}
+        self.{{ key }} = fake.last_name()
+    {%- endif %}
+    {%- if key == "email" %}
+        self.{{ key }} = self.first_name[0] + self.last_name + "@scooty.com"
+    {%- endif %}
+
+    {%- if value["dist"] %}
+        self.{{ key }} = self.random_int({{ value["dist"]["max"] }})
+    {%- endif %}
+    {%- if "values" in value %}
+        self.{{ key }} = self.random_item({{ value["values"] }})
+    {%- endif %}
+    {%- if key == "phone_number" %}
+        self.{{ key }} = fake.unique.phone_number()
+    {%- endif %}
+    {%- endfor %}
+        {{ table.lower() }}_out.append(dataclasses.asdict(self))
+
+    def __str__(self):
+        return f"{self.{{  tables[table].keys()|join("}, {self.") ~ "}"}}"
+{% endfor %}
+if __name__ == "__main__":
+    for i in range(100):
+        {% for table in tables -%}
+        print({{ table }}())
+        {% endfor %}
+
+

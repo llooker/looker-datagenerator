@@ -1,0 +1,39 @@
+Scooters:
+  records: 200
+  id: { type: int }
+  model:
+    {
+      type: str,
+      values:
+        [
+          "Xiaomi M365",
+          "Ninebot-Segway ES2",
+          "Bespoke Scooters",
+          "Xiaomi 1S",
+          "Ninebot-Segway ES4",
+        ],
+    }
+  last_battery: { type: int, dist: { min: 0, max: 100 } }
+  days_since_last_service: { type: int, dist: { min: 5, max: 35 } }
+  status:
+    {
+      type: str,
+      values:
+        [
+          "In-Use",
+          "Parked: Available",
+          "Parked: Needs Service",
+          "Charging",
+          "In-Service",
+          "Unknown",
+        ],
+    }
+Technicians:
+  records: 200
+  id: { type: int }
+  first_name: { type: str }
+  last_name: { type: str }
+  phone_number: { type: str }
+  email: { type: str }
+  status: { type: str, values: ["Available", "Utilized", "Not working"] }
+  level: { type: int, values: [1, 2] }
