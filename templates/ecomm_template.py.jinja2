@@ -5,46 +5,68 @@ import dataclasses
 import datetime
 import itertools
 import json
+from typing import Any
 
 fake = Faker()
 {%- for table in tables -%}
 {% set unset_fields = {} %}
-{% set str_out = "" %}
+{% set linked_fields = {} %}
+{% set test_dict = {} %}
+{% set unset_values = [] %}
+{% set join = [] %}
 {{ table.lower() }}_out = []
 @dataclasses.dataclass
 class {{ table }}(DataUtil):
 {%- for key, value in tables[table].items() %}
 {%- if key == "id" %}
     {{ key }}: {{ value["type"] }} = dataclasses.field(default_factory=itertools.count(start=1).__next__)
-{%- elif key == "created_at" %}
+{%- elif "_at" in key %}
     {{ key }}: datetime.{{ value["type"] }} = dataclasses.field(init=False)
-    {%- set x=unset_fields.__setitem__(key, value) -%}
+    {%- set x=unset_fields.__setitem__(key, value) %}
+{%- elif "_id" in key %}
+    {%- do join.append(key.replace("_id", "")) %}
+    {{ key }}: {{ value["type"] }} = dataclasses.field(init=False)
+    {{ join[0] }}: dataclasses.InitVar[Any] = None
 {%- else %}
     {{ key }}: {{ value["type"] }} = dataclasses.field(init=False)
     {%- set x=unset_fields.__setitem__(key, value) -%}
 {%- endif %}
+{#- Set linked fields -#}
+{%- if value["depends_on"] -%}
+{% for k in tables[table][value["depends_on"][0]]["values"] %}
+{%- set x=linked_fields.__setitem__(k, { "field": key, "linked_values": value, "values": tables[table][value["depends_on"][0]]["values"] }) -%}
+{% endfor %}
+{%- endif -%}
 {%- endfor %}
-
+{%- if join|length > 0 %}
+    def __post_init__(self, {{ join[0] }}=None):
+        self.{{ join[0] }}_id =  None
+{%- else %}
     def __post_init__(self):
-    {%- if "lat" in unset_fields.keys() or "lng" in unset_fields.keys() %}
+{%- endif %}
+    {%- if "latitude" in unset_fields.keys() or "longitude" in unset_fields.keys() %}
         location = DataUtil.get_coordinates(self)
     {%- endif %}
-    {% for key, value in unset_fields.items() %}
-    {%- if key == "first_name" %}
-        self.{{ key }} = fake.first_name()
+    {%- if unset_fields["state"] and unset_fields["state"]["address_type"] == "standard" %}
+        address = DataUtil.get_address(self)
     {%- endif %}
+{# unset values #}
+    {%- for key, value in unset_fields.items() %}
     {%- if key == "last_name" %}
-        self.{{ key }} = fake.last_name()
+        self.{{ key }} = fake.last_name_nonbinary()
     {%- endif %}
-    {%- if key == "email"  and value["domain"] %}
+    {%- if key == "email" and value["domain"] %}
         self.{{ key }} = self.first_name[0].lower() + self.last_name.lower() +  "@{{ value["domain"] }}"
     {%- elif key == "email" %}
         self.{{ key }} = self.first_name[0].lower() + self.last_name.lower() +  "@example.com"
     {%- endif %}
-    {%- if key == "lat" %}
+    {%- if value["address_type"] == "standard" %}
+        self.{{ key }} = address["{{ key }}"]
+    {%- endif %}
+    {%- if value["address_type"] == "custom" and key == "latitude" %}
         self.{{ key }} = location['latitude']
     {%- endif %}
-    {%- if key == "lng" %}
+    {%- if value["address_type"] == "custom" and key == "longitude" %}
         self.{{ key }} = location['longitude']
     {%- endif %}
 
@@ -64,6 +86,22 @@ class {{ table }}(DataUtil):
         self.{{ key }} = fake.unique.phone_number()
     {%- endif %}
     {%- endfor %}
+
+    {%- for key, value in linked_fields.items() %}
+    {#- Gender depends_on -#}
+    {%- if value["linked_values"]["depends_on"]|length == 1 and value["linked_values"]["depends_on"][0] == "gender" %}
+        if self.{{ value["linked_values"]["depends_on"][0] }} == "{{ key }}":
+            self.{{ value["field"]}} = fake.first_name_{{ key }}()
+    {%- elif value["linked_values"]["depends_on"]|length > 1 and value["linked_values"]["depends_on"][0] == "status" %}
+        if self.{{ value["linked_values"]["depends_on"][0] }} == "{{ key }}":
+            {%- for k in linked_fields %}
+            self.{{ value["field"] }} = self.{{ value["linked_values"]["depends_on"][1] }} + timedelta(days={{ value["linked_values"]["max_range"] }})
+            {%- endfor %}
+    {%- endif -%}
+    {%- endfor %}
+
+
+
         {{ table.lower() }}_out.append(dataclasses.asdict(self))
 
     def __str__(self):

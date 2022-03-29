@@ -1,0 +1,39 @@
+Users:
+  id: { type: int }
+  created_at: { type: datetime, min_date: { year: 2021, month: 1, day: 1 } }
+  gender: { type: str, values: ["male", "female"], distribution: [.5, .5] }
+  first_name: { type: str, depends_on: ["gender"] }
+  last_name: { type: str }
+  email: { type: str, domain: "westsidewontons.com" }
+  state: { type: str, address_type: "standard" }
+  street_address: { type: str, address_type: "standard" }
+  postal_code: { type: str, address_type: "standard" }
+  city: { type: str, address_type: "standard" }
+  country: { type: str, address_type: "standard" }
+  latitude: { type: float, address_type: "standard" }
+  longitude: { type: float, address_type: "standard" }
+  traffic_source:
+    {
+      type: str,
+      values: ["Organic", "Facebook", "Search", "Email", "Display"],
+      distribution: [.2, .2, .2, .2, .2],
+    }
+
+Orders:
+  id: { type: int }
+  user_id: { type: int }
+  status:
+    {
+      type: str,
+      values: ["Complete", "Cancelled", "Returned"],
+      distribution: [.85, .05, .1],
+    }
+  created_at: { type: datetime, min_date: { year: 2021, month: 1, day: 1 } }
+  returned_at:
+    { type: datetime, depends_on: ["status", "delivered_at"], max_range: 3 }
+  shipped_at:
+    { type: datetime, depends_on: ["status", "created_at"], max_range: 3 }
+  delivered_at:
+    { type: datetime, depends_on: ["status", "shipped_at"], max_range: 5 }
+  num_of_item:
+    { type: int, values: [1, 2, 3, 4], distribution: [.7, .2, .05, .05] }
