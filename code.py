@@ -92,7 +92,7 @@ template = env.get_template("wow_template.py.jinja2")
 template.globals['Table'] = Table()
 
 #read yaml file
-with open("ga4.yaml", "r") as val:
+with open("org_chart.yaml", "r") as val:
     values = yaml.safe_load(val)
     output = template.render(tables=values)
     #write python file
