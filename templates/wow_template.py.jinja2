@@ -9,14 +9,24 @@ from utils import DataUtil
 import faker
 fake = faker.Faker()
 {% for table in tables -%}
+{{ table.lower() }}_out = []
 @dataclasses.dataclass
 {{ Table.table_name(table) }}
 {{ Table.init_fields(table, tables) }}
 {{ Table.parse_relationships(table, tables) }}
 {{ Table.post_init(table, tables) }}
+{{ Table.append_output(table, tables) }}
 {{ Table.print_str(table, tables) }}
-{% endfor %}
-
+{%- endfor %}
 if __name__ == "__main__":
   for i in range(100):
-    print({{ tables[0] }}())
+    {% for table in tables -%}
+    print({{ table }}())
+    {% endfor %}
+{% for table in tables -%}
+keys = {{ table.lower() }}_out[0].keys()
+a_file = open(f"data/{{ table.lower() }}.csv", "w")
+dict_writer = csv.DictWriter(a_file, keys)
+dict_writer.writeheader()
+dict_writer.writerows({{ table.lower() }}_out)
+{% endfor %}

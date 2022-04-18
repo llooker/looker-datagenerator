@@ -8,6 +8,7 @@ import json
 from utils import DataUtil
 import faker
 fake = faker.Faker()
+employees_out = []
 @dataclasses.dataclass
 class Employees(DataUtil.DataUtil):
 	id: int = dataclasses.field(default_factory=itertools.count(start=1).__next__)
@@ -16,6 +17,7 @@ class Employees(DataUtil.DataUtil):
 	last_name: str = dataclasses.field(init=False)
 	email: str = dataclasses.field(init=False)
 	level: int = dataclasses.field(init=False)
+	org: str = dataclasses.field(init=False)
 	role: str = dataclasses.field(init=False)
 
 	def __post_init__(self):
@@ -29,11 +31,27 @@ class Employees(DataUtil.DataUtil):
 		self.last_name = fake.last_name_nonbinary()
 		self.email = f'{self.first_name.lower()}{self.last_name.lower()}@testco.com'
 		self.level = self.random_int(1, 5)
-		self.role = self.random_item(population=['account executive', 'sales engineer', 'customer success analyst', 'engineer', 'recruiter'], distribution=[0.6, 0.1, 0.1, 0.1, 0.1])
-
+		self.org = self.random_item(population=['Sales', 'Marketing', 'Engineer', 'Product', 'Customer Success'])
+		if self.org == 'Sales':
+			self.role = self.random_item(population=["AE", "SE", "FSR"])
+		if self.org == 'Marketing':
+			self.role = self.random_item(population=["Marketing Analyst", "Marketing Manager"])
+		if self.org == 'Engineer':
+			self.role = self.random_item(population=["SWE", "Data Eng"])
+		if self.org == 'Product':
+			self.role = self.random_item(population=["PM", "UI", "UX"])
+		if self.org == 'Customer Success':
+			self.role = self.random_item(population=["CSM", "CSE", "TSM"])
+		employees_out.append(dataclasses.asdict(self))
 	def __str__(self):
-		return f'{self.id},{self.gender},{self.first_name},{self.last_name},{self.email},{self.level},{self.role}'
+		return f'{self.id},{self.gender},{self.first_name},{self.last_name},{self.email},{self.level},{self.org},{self.role}'
 
 if __name__ == "__main__":
   for i in range(100):
     print(Employees())
+
+keys = employees_out[0].keys()
+a_file = open(f"data/employees.csv", "w")
+dict_writer = csv.DictWriter(a_file, keys)
+dict_writer.writeheader()
+dict_writer.writerows(employees_out)

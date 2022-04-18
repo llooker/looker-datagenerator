@@ -38,6 +38,8 @@ class Table:
                     output += self.helper_parse_values(key, value, tables[table])
         return output
 
+    def append_output(self, table, tables):
+        return f"\t\t{table.lower() }_out.append(dataclasses.asdict(self))"
     def print_str(self, table, tables):
         output = "\tdef __str__(self):\n"
         tmp_out = "\t\treturn f'"
@@ -47,7 +49,6 @@ class Table:
         tmp_out += f"{{self.{keys[-1]}}}'\n"
         output += tmp_out
         return output
-
 
     def helper_initialize_joins(self, foreign_keys):
         output = ""
@@ -71,11 +72,17 @@ class Table:
         elif key == "email" and "domain" not in value:
             return f"\t\tself.{key} = f'{{self.first_name.lower()}}{{self.last_name.lower()}}@{{fake.safe_domain_name()}}'\n"
         elif "depends_on" in value:
-            if len(value["depends_on"]) == 1: #single dependency
+            if len(value["depends_on"]) == 1 and value["depends_on"][0] == "gender": #single dependency
                 dependent_var = value["depends_on"][0]
                 for i in table[dependent_var]["values"]:
                     output += f"\t\tif self.{dependent_var} == '{i}':\n"
                     output += f"\t\t\tself.{key} = fake.first_name_{i}()\n"
+                return output
+            else:
+                dependent_var = value["depends_on"][0]
+                for i in table[dependent_var]["values"]:
+                    output += f"\t\tif self.{dependent_var} == '{i}':\n"
+                    output += f"\t\t\tself.{key} = self.random_item(population=[FILL IN YOUR VALUES])\n"
                 return output
         elif "foreign_key" in value:
             return f"\t\tself.{key} == {value['foreign_key']}\n"
@@ -95,7 +102,7 @@ template = env.get_template("wow_template.py.jinja2")
 template.globals['Table'] = Table()
 
 #read yaml file
-with open("org_chart.yaml", "r") as val:
+with open("yaml/org_chart.yaml", "r") as val:
     values = yaml.safe_load(val)
     output = template.render(tables=values)
     #write python file

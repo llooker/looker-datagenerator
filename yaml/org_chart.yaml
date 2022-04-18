@@ -14,20 +14,7 @@ Employees:
   org:
     {
       type: str,
-      values:
-        ["sales", "marketing", "engineering", "product", "customer sucess"],
+      values: ["Sales", "Marketing", "Engineer", "Product", "Customer Success"],
     }
   # role: { type: str, depends_on: ["org"] }
-  role:
-    {
-      type: str,
-      values:
-        [
-          "account executive",
-          "sales engineer",
-          "customer success analyst",
-          "engineer",
-          "recruiter",
-        ],
-      distribution: [.6, .1, .1, .1, .1],
-    }
+  role: { type: str, depends_on: ["org"] }
