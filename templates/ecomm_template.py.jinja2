@@ -100,8 +100,6 @@ class {{ table }}(DataUtil):
     {%- endif -%}
     {%- endfor %}
 
-
-
         {{ table.lower() }}_out.append(dataclasses.asdict(self))
 
     def __str__(self):

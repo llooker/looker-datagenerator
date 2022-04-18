@@ -1,5 +1,5 @@
 Scooters:
-  id: { type: int }
+  id: { type: int, primary_key: True }
   created_at: { type: datetime, min_date: { year: 2022, month: 1, day: 1 } }
   lat: { type: float }
   lng: { type: float }
@@ -32,8 +32,15 @@ Scooters:
         ],
     }
 Technicians:
-  id: { type: int }
-  first_name: { type: str }
+  id: { type: int, primary_key: True }
+  scooter_id: { type: int, foreign_key: "scooter.id" }
+  gender:
+    {
+      type: str,
+      values: ["male", "female", "nonbinary"],
+      distribution: [.4, .5, .1],
+    }
+  first_name: { type: str, depends_on: ["gender"] }
   last_name: { type: str }
   phone_number: { type: str }
   email: { type: str, domain: "scooty.com" }

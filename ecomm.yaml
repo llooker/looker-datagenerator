@@ -1,5 +1,5 @@
 Users:
-  id: { type: int }
+  id: { type: int, primary_key: True }
   created_at: { type: datetime, min_date: { year: 2021, month: 1, day: 1 } }
   gender: { type: str, values: ["male", "female"], distribution: [.5, .5] }
   first_name: { type: str, depends_on: ["gender"] }
@@ -21,7 +21,7 @@ Users:
 
 Orders:
   id: { type: int }
-  user_id: { type: int }
+  user_id: { type: int, foreign_key: "user.id" }
   status:
     {
       type: str,

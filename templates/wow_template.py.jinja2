@@ -1,0 +1,8 @@
+{%- for table in tables -%}
+@dataclasses.dataclass
+{{ Table.table_name(table) }}
+{{ Table.init_fields(table, tables) }}
+{{ Table.parse_relationships(table, tables) }}
+{{ Table.post_init(table, tables) }}
+{{ Table.print_str(table, tables) }}
+{% endfor %}

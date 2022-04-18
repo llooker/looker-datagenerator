@@ -40,8 +40,8 @@ class DataUtil:
     def random_float(self, max_num) -> float:
         return random.uniform(0, max_num)
 
-    def random_int(self, max_num) -> int:
-        return random.randrange(max_num)
+    def random_int(self, min_num, max_num) -> int:
+        return random.randrange(min_num, max_num)
 
     def snap_to_road(self, x_coord: float, y_coord: float) -> float:
       coord = str(x_coord) + "," + str(y_coord)
