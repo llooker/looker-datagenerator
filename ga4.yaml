@@ -2,7 +2,7 @@ Comments:
   url: { type: str, primary_key: True }
   source_system: { type: str, values: ["GMB", "YT"] }
   created_at: { type: datetime, min_date: { year: 2022, month: 1, day: 1 } }
-  comment_text: { type: str }
+  comment_text: { type: str, words: { max: 10 } }
   comment_reference: { type: str }
   user_name: { type: str }
 

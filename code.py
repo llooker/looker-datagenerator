@@ -5,14 +5,14 @@ file_loader = FileSystemLoader("templates")
 
 class Table:
     def table_name(self, table):
-        return f"class { table }(DataUtil):"
+        return f"class { table }(DataUtil.DataUtil):"
     def init_fields(self, table, tables):
         output = ""
         for key, value in tables[table].items():
             if "primary_key" in value:
-                output += f"\t{key}: {value['type']} = field(default_factory=itertools.count(start=1).__next__)\n"
+                output += f"\t{key}: {value['type']} = dataclasses.field(default_factory=itertools.count(start=1).__next__)\n"
             else:
-                output += f"\t{key}: {value['type']} = field(init=False)\n"
+                output += f"\t{key}: {value['type']} = dataclasses.field(init=False)\n"
         return output
     def parse_relationships(self, table, tables):
         output = ""
@@ -39,8 +39,8 @@ class Table:
         return output
 
     def print_str(self, table, tables):
-        output = "\t\tdef __str__(self):\n"
-        tmp_out = "\t\t\treturn f'"
+        output = "\tdef __str__(self):\n"
+        tmp_out = "\t\treturn f'"
         keys = list(tables[table].keys())
         for key in keys[:-1]:
             tmp_out += f"{{self.{key}}},"
@@ -81,7 +81,10 @@ class Table:
             return f"\t\tself.{key} == {value['foreign_key']}\n"
         elif "dist" in value:
             num = value["dist"]
-            return f"\t\tself.{key} == self.random_int({num['min']}, {num['max']})\n"
+            return f"\t\tself.{key} = self.random_int({num['min']}, {num['max']})\n"
+        elif "words" in value:
+            max_words = value["words"]["max"]
+            return f"\t\tself.{key} = fake.sentence(nb_words={max_words})\n"
         else:
             return f"\t\tself.{key} = ##FILL ME IN\n"
         #     return f"{key}, {value}"
@@ -92,7 +95,7 @@ template = env.get_template("wow_template.py.jinja2")
 template.globals['Table'] = Table()
 
 #read yaml file
-with open("ga4.yaml", "r") as val:
+with open("org_chart.yaml", "r") as val:
     values = yaml.safe_load(val)
     output = template.render(tables=values)
     #write python file

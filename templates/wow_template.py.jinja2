@@ -1,4 +1,14 @@
-{%- for table in tables -%}
+import collections
+import csv
+import dataclasses
+import datetime
+import itertools
+import json
+
+from utils import DataUtil
+import faker
+fake = faker.Faker()
+{% for table in tables -%}
 @dataclasses.dataclass
 {{ Table.table_name(table) }}
 {{ Table.init_fields(table, tables) }}
@@ -6,3 +16,7 @@
 {{ Table.post_init(table, tables) }}
 {{ Table.print_str(table, tables) }}
 {% endfor %}
+
+if __name__ == "__main__":
+  for i in range(100):
+    print({{ tables[0] }}())
