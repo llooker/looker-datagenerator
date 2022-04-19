@@ -21,7 +21,7 @@ class Table:
             if "foreign_key" in value:
                 foreign_key_value = value['foreign_key'].split('.')[0]
                 foreign_key_list.append(foreign_key_value)
-                output += f"\t{foreign_key_value}:InitVar[Any] = None\n"
+                output += f"\t{foreign_key_value}:dataclasses.InitVar[typing.Any] = None\n"
 
         if len(foreign_key_list) > 0:
             output += f"\tdef __post_init__(self, {self.helper_initialize_joins(foreign_key_list)}):"
@@ -65,12 +65,20 @@ class Table:
             return f"\t\tself.{key} = self.random_item(population={value['values']}, distribution={value['distribution']})\n"
         elif "values" in value:
             return f"\t\tself.{key} = self.random_item(population={value['values']})\n"
+        elif key == "phone_number":
+            return f"\t\tself.{key} = fake.phone_number()\n"
         elif key == "last_name":
             return f"\t\tself.{key} = fake.last_name_nonbinary()\n"
         elif key == "email" and "domain" in value:
             return f"\t\tself.{key} = f'{{self.first_name.lower()}}{{self.last_name.lower()}}@{value['domain']}'\n"
         elif key == "email" and "domain" not in value:
             return f"\t\tself.{key} = f'{{self.first_name.lower()}}{{self.last_name.lower()}}@{{fake.safe_domain_name()}}'\n"
+        elif key == "user_name":
+            return f"\t\tself.{key} = fake.user_name()"
+        elif "path" in key:
+            return f"\t\tself.{key} = fake.uri_path()"
+        elif "random_digits" in value:
+            return f"\t\tself.{key} = fake.bothify('#' * {value['random_digits']})\n"
         elif "depends_on" in value:
             if len(value["depends_on"]) == 1 and value["depends_on"][0] == "gender": #single dependency
                 dependent_var = value["depends_on"][0]
@@ -102,10 +110,10 @@ template = env.get_template("wow_template.py.jinja2")
 template.globals['Table'] = Table()
 
 #read yaml file
-with open("yaml/org_chart.yaml", "r") as val:
+with open("yaml/ga4.yaml", "r") as val:
     values = yaml.safe_load(val)
     output = template.render(tables=values)
     #write python file
     print(output)
-    with open("fake.py", "w") as out:
+    with open("ga4.py", "w") as out:
         out.write(output)

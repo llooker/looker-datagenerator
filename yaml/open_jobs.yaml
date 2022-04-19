@@ -1,0 +1,2 @@
+Openings:
+  job_id: { type: int }

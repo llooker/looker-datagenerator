@@ -1,0 +1,201 @@
+product_id,availability,quantity
+1,available,0
+1,available,0
+2,out of stock,2
+2,out of stock,2
+3,out of stock,3
+3,out of stock,3
+4,available,3
+4,available,3
+5,available,0
+5,available,0
+6,out of stock,0
+6,out of stock,0
+7,out of stock,3
+7,out of stock,3
+8,out of stock,3
+8,out of stock,3
+9,out of stock,3
+9,out of stock,3
+10,out of stock,3
+10,out of stock,3
+11,available,3
+11,available,3
+12,available,0
+12,available,0
+13,out of stock,4
+13,out of stock,4
+14,available,0
+14,available,0
+15,available,2
+15,available,2
+16,available,0
+16,available,0
+17,out of stock,2
+17,out of stock,2
+18,out of stock,1
+18,out of stock,1
+19,out of stock,1
+19,out of stock,1
+20,available,2
+20,available,2
+21,available,2
+21,available,2
+22,out of stock,0
+22,out of stock,0
+23,available,3
+23,available,3
+24,available,4
+24,available,4
+25,out of stock,4
+25,out of stock,4
+26,available,4
+26,available,4
+27,out of stock,2
+27,out of stock,2
+28,out of stock,3
+28,out of stock,3
+29,out of stock,4
+29,out of stock,4
+30,out of stock,1
+30,out of stock,1
+31,out of stock,3
+31,out of stock,3
+32,available,3
+32,available,3
+33,out of stock,1
+33,out of stock,1
+34,available,0
+34,available,0
+35,available,1
+35,available,1
+36,out of stock,3
+36,out of stock,3
+37,available,3
+37,available,3
+38,out of stock,0
+38,out of stock,0
+39,out of stock,3
+39,out of stock,3
+40,out of stock,3
+40,out of stock,3
+41,available,1
+41,available,1
+42,out of stock,1
+42,out of stock,1
+43,out of stock,0
+43,out of stock,0
+44,out of stock,2
+44,out of stock,2
+45,out of stock,2
+45,out of stock,2
+46,out of stock,4
+46,out of stock,4
+47,available,0
+47,available,0
+48,available,0
+48,available,0
+49,available,3
+49,available,3
+50,out of stock,2
+50,out of stock,2
+51,out of stock,4
+51,out of stock,4
+52,available,1
+52,available,1
+53,available,4
+53,available,4
+54,available,4
+54,available,4
+55,out of stock,2
+55,out of stock,2
+56,available,4
+56,available,4
+57,available,4
+57,available,4
+58,available,4
+58,available,4
+59,available,1
+59,available,1
+60,available,0
+60,available,0
+61,out of stock,3
+61,out of stock,3
+62,out of stock,2
+62,out of stock,2
+63,out of stock,3
+63,out of stock,3
+64,out of stock,0
+64,out of stock,0
+65,available,3
+65,available,3
+66,available,4
+66,available,4
+67,out of stock,3
+67,out of stock,3
+68,available,3
+68,available,3
+69,available,1
+69,available,1
+70,available,2
+70,available,2
+71,available,0
+71,available,0
+72,available,3
+72,available,3
+73,available,2
+73,available,2
+74,available,3
+74,available,3
+75,out of stock,0
+75,out of stock,0
+76,available,2
+76,available,2
+77,available,4
+77,available,4
+78,out of stock,4
+78,out of stock,4
+79,available,0
+79,available,0
+80,out of stock,4
+80,out of stock,4
+81,available,4
+81,available,4
+82,out of stock,3
+82,out of stock,3
+83,available,3
+83,available,3
+84,available,0
+84,available,0
+85,out of stock,0
+85,out of stock,0
+86,out of stock,2
+86,out of stock,2
+87,out of stock,4
+87,out of stock,4
+88,available,2
+88,available,2
+89,available,1
+89,available,1
+90,out of stock,3
+90,out of stock,3
+91,available,3
+91,available,3
+92,available,2
+92,available,2
+93,available,0
+93,available,0
+94,available,4
+94,available,4
+95,out of stock,0
+95,out of stock,0
+96,available,2
+96,available,2
+97,available,3
+97,available,3
+98,available,0
+98,available,0
+99,available,0
+99,available,0
+100,available,2
+100,available,2

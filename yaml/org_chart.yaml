@@ -8,7 +8,7 @@ Employees:
     }
   first_name: { type: str, depends_on: ["gender"] }
   last_name: { type: str }
-  # phone_number: { type: str }
+  phone_number: { type: str }
   email: { type: str, domain: "testco.com" }
   level: { type: int, dist: { min: 1, max: 5 } }
   org:
@@ -16,5 +16,4 @@ Employees:
       type: str,
       values: ["Sales", "Marketing", "Engineer", "Product", "Customer Success"],
     }
-  # role: { type: str, depends_on: ["org"] }
   role: { type: str, depends_on: ["org"] }
