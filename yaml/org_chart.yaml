@@ -8,6 +8,7 @@ Employees:
     }
   first_name: { type: str, depends_on: ["gender"] }
   last_name: { type: str }
+  hired_date: { type: datetime, min_date: { year: 2015, month: 1, day: 1 } }
   email: { type: str, domain: "testco.com" }
   level: { type: int, dist: { min: 1, max: 5 } }
   org:
