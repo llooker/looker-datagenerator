@@ -1,14 +1,5 @@
-Employees:
+Jobs:
   id: { type: int, primary_key: True }
-  gender:
-    {
-      type: str,
-      values: ["male", "female", "nonbinary"],
-      distribution: [.4, .5, .1],
-    }
-  first_name: { type: str, depends_on: ["gender"] }
-  last_name: { type: str }
-  email: { type: str, domain: "testco.com" }
   level: { type: int, dist: { min: 1, max: 5 } }
   org:
     {

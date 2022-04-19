@@ -1,0 +1,101 @@
+id,level,org,title
+1,3,Product,UI
+2,4,Marketing,Marketing Analyst
+3,3,Product,UX
+4,2,Engineering,SWE
+5,2,Marketing,Marketing Manager
+6,1,Sales,AE
+7,1,Marketing,Marketing Analyst
+8,3,Marketing,Marketing Manager
+9,1,Product,UX
+10,4,Marketing,Marketing Analyst
+11,4,Sales,SE
+12,2,Engineering,Data Eng
+13,3,Marketing,Marketing Analyst
+14,1,Marketing,Marketing Analyst
+15,1,Engineering,Data Eng
+16,2,Engineering,SWE
+17,1,Marketing,Marketing Manager
+18,3,Engineering,Data Eng
+19,3,Product,UI
+20,4,Engineering,SWE
+21,2,Sales,AE
+22,2,Product,UX
+23,1,Marketing,Marketing Analyst
+24,1,Customer Success,TSM
+25,1,Engineering,Data Eng
+26,2,Sales,SE
+27,2,Engineering,Data Eng
+28,4,Marketing,Marketing Manager
+29,1,Product,UX
+30,1,Customer Success,TSM
+31,2,Product,UI
+32,3,Product,PM
+33,4,Marketing,Marketing Analyst
+34,1,Product,UX
+35,4,Marketing,Marketing Analyst
+36,1,Sales,FSR
+37,3,Sales,FSR
+38,4,Sales,SE
+39,1,Customer Success,TSM
+40,1,Customer Success,TSM
+41,3,Marketing,Marketing Analyst
+42,3,Customer Success,TSM
+43,4,Customer Success,TSM
+44,2,Marketing,Marketing Manager
+45,3,Product,PM
+46,1,Product,PM
+47,4,Product,UX
+48,3,Sales,AE
+49,4,Customer Success,TSM
+50,2,Engineering,SWE
+51,2,Product,UI
+52,3,Marketing,Marketing Manager
+53,3,Sales,FSR
+54,3,Product,UI
+55,3,Engineering,SWE
+56,1,Product,UX
+57,1,Sales,AE
+58,3,Marketing,Marketing Analyst
+59,4,Sales,FSR
+60,2,Customer Success,CSM
+61,1,Engineering,SWE
+62,2,Customer Success,CSM
+63,3,Sales,AE
+64,1,Customer Success,CSE
+65,3,Customer Success,TSM
+66,2,Sales,SE
+67,2,Engineering,Data Eng
+68,4,Product,UI
+69,1,Product,UX
+70,1,Engineering,SWE
+71,2,Sales,FSR
+72,4,Product,UX
+73,4,Customer Success,TSM
+74,3,Product,UI
+75,1,Sales,AE
+76,4,Sales,SE
+77,4,Sales,SE
+78,3,Sales,FSR
+79,4,Customer Success,CSE
+80,2,Marketing,Marketing Analyst
+81,4,Customer Success,CSM
+82,2,Product,UX
+83,3,Sales,FSR
+84,3,Product,UI
+85,1,Sales,SE
+86,3,Sales,SE
+87,4,Sales,SE
+88,3,Sales,SE
+89,1,Customer Success,TSM
+90,2,Product,UX
+91,2,Product,PM
+92,2,Sales,FSR
+93,4,Engineering,SWE
+94,3,Engineering,SWE
+95,4,Sales,SE
+96,2,Customer Success,CSM
+97,2,Sales,AE
+98,1,Product,UX
+99,2,Engineering,SWE
+100,1,Marketing,Marketing Manager
