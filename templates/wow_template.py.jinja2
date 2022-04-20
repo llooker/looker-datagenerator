@@ -4,10 +4,12 @@ import dataclasses
 import datetime
 import itertools
 import json
+import typing
 
 from utils import DataUtil
 import faker
 fake = faker.Faker()
+
 {% for table in tables -%}
 {{ table.lower() }}_out = []
 @dataclasses.dataclass

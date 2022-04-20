@@ -3,43 +3,66 @@ Comments:
   source_system: { type: str, values: ["GMB", "YT"] }
   created_at: { type: datetime, min_date: { year: 2022, month: 1, day: 1 } }
   comment_text: { type: str, words: { max: 10 } }
-  comment_reference: { type: str }
+  # comment_reference: { type: str }
+  # user_id: { type: int, foreign_key: "user.id" }
   user_name: { type: str }
 
 Products:
   id: { type: int, primary_key: True }
-  offer_id: { type: int }
-  title: { type: str }
-  description: { type: str }
-  link: { type: str }
-  image_link: { type: str }
-  channel: { type: str }
-  availability: { type: str }
+  # offer_id: { type: int }
+  # title: { type: str }
+  description: { type: str, words: { max: 5 } }
+  # link: { type: str }
+  # image_link: { type: str }
+  channel: { type: str, values: ["online", "local"] }
+  availability:
+    {
+      type: str,
+      values: ["Available", "Unavailable", "In-Transit"],
+      distribution: [.5, .3, .2],
+    }
   price: { type: float, dist: { min: 0, max: 100 } }
-  gtin: { type: str }
-  google_product_category_path: {type: int }
+  gtin: { type: str, random_digits: 12 }
+  # google_product_category_path: {type: int }
   google_product_category_path: { type: str }
 
 Inventory:
-  product_id: { type: str , foreign_key: "products.id"}
-  store_code: { type: str }
-  availability: { type: str }
-  quantity: {type: int, dist: { min: 0, max: 5 }}
+  product_id: { type: str, foreign_key: "products.id" }
+  store_code: { type: str, foreign_key: "stores.store_code" }
+  availability: { type: str, values: ["available", "out of stock"] }
+  quantity: { type: int, dist: { min: 0, max: 5 } }
 
 Stores:
-  store_code: { type: str }
-  location: { type: coordinate }
-  store_name: { type: str, values: ["store1", "store2"] }
+  store_code: { type: int, primary_key: True }
+  # location: { type: coordinate }
+  store_name:
+    {
+      type: str,
+      values:
+        [
+          "store1",
+          "store2",
+          "store3",
+          "store4",
+          "store4",
+          "store5",
+          "store6",
+          "store7",
+          "store8",
+          "store9",
+          "store10",
+        ],
+    }
 
 Customers:
   id: { type: int, primary_key: True }
-  gender: {type: str, values: ["male", "female", "nonbinary"]}
-  first_name: { type: str, depends_on: ["gender"]}
+  gender: { type: str, values: ["male", "female", "nonbinary"] }
+  first_name: { type: str, depends_on: ["gender"] }
   last_name: { type: str }
-  loyalty_id: { type: str }
+  loyalty_tier: { type: str, values: ["gold", "silver", "bronze"] }
 
 Transactions:
   id: { type: int, primary_key: True }
   customer_id: { type: int, foreign_key: "customers.id" }
   product_id: { type: int, foreign_key: "products.id" }
-  cost: {type: float, dist: { min: 0, max: 100 } }
+  cost: { type: float, dist: { min: 0, max: 100 } }
