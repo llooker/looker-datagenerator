@@ -7,16 +7,16 @@ Jobs:
       values:
         ["Sales", "Marketing", "Engineering", "Product", "Customer Success"],
     }
-  title: { type: str, depends_on: ["org"] }
-  titles_by_org: {
+  title:
+    {
       type: str,
-      values:
+      depends_on: ["org"],
+      mapping:
         {
-          sales: ["AE", "SE", "FSR"],
-          marketing: ["Marketing Analyst", "Marketing Manager"],
-          engineering: ["SWE", "Data Eng"],
-          product: ["PM", "UI", "UX"],
-          customer_success: ["CSM", "CSE", "TSM"],
+          "Sales": ["AE", "SE", "FSR"],
+          "Marketing": ["Marketing Analyst", "Marketing Manager"],
+          "Engineering": ["SWE", "Data Eng"],
+          "Product": ["PM", "UI", "UX"],
+          "Customer Success": ["CSM", "CSE", "TSM"],
         },
-      exclude_from_output: True, #not working
     }
