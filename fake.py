@@ -4,10 +4,12 @@ import dataclasses
 import datetime
 import itertools
 import json
+import typing
 
 from utils import DataUtil
 import faker
 fake = faker.Faker()
+
 jobs_out = []
 @dataclasses.dataclass
 class Jobs(DataUtil.DataUtil):

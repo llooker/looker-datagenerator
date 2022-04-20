@@ -1,6 +1,6 @@
 from jinja2 import Environment, FileSystemLoader
 import yaml
-
+import sys
 file_loader = FileSystemLoader("templates")
 
 
@@ -118,8 +118,12 @@ template = env.get_template("wow_template.py.jinja2")
 # template = env.get_template("ecomm_template.py.jinja2")
 template.globals['Table'] = Table()
 
+yaml_file = "yaml/job_listings.yaml"
+if sys.argv[1]:
+    yaml_file = f"yaml/{sys.argv[1]}.yaml"
+print(yaml_file)
 # read yaml file
-with open("yaml/job_listings.yaml", "r") as val:
+with open(yaml_file, "r") as val:
     values = yaml.safe_load(val)
     output = template.render(tables=values)
     # write python file

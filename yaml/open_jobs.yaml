@@ -1,2 +1,22 @@
-Openings:
-  job_id: { type: int }
+Jobs:
+  id: { type: int, primary_key: True }
+  level: { type: int, dist: { min: 1, max: 5 } }
+  org:
+    {
+      type: str,
+      values:
+        ["Sales", "Marketing", "Engineering", "Product", "Customer Success"],
+    }
+  title:
+    {
+      type: str,
+      depends_on: ["org"],
+      mapping:
+        {
+          "Sales": ["AE", "SE", "FSR"],
+          "Marketing": ["Marketing Analyst", "Marketing Manager"],
+          "Engineering": ["SWE", "Data Eng"],
+          "Product": ["PM", "UI", "UX"],
+          "Customer Success": ["CSM", "CSE", "TSM"],
+        },
+    }
