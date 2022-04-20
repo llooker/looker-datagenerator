@@ -98,4 +98,30 @@ id,gender,first_name,last_name,hired_date,email,level,org,title
 97,female,Elizabeth,Williams,2022-02-13,elizabethwilliams@testco.com,1,Engineering,SWE
 98,nonbinary,Christina,Bond,2016-10-14,christinabond@testco.com,1,Marketing,Marketing Analyst
 99,nonbinary,Taylor,Carr,2019-02-27,taylorcarr@testco.com,4,Product,PM
+100,male,Jacob,Peterson,2015-05-30,jacobpeterson@testco.com,1,Customer Success,CSE3,male,Jeremy,Williams,2015-10-07,jeremywilliams@testco.com,2,Engineering,Data Eng
+4,male,Nicholas,Smith,2015-05-20,nicholassmith@testco.com,1,Customer Success,CSE
+7,male,Mitchell,Weaver,2016-04-13,mitchellweaver@testco.com,3,Sales,SE
+9,nonbinary,Ronald,Molina,2015-04-27,ronaldmolina@testco.com,3,Marketing,Marketing Manager
+15,female,Misty,Curry,2015-07-25,mistycurry@testco.com,1,Customer Success,TSM
+21,female,Nicole,Moss,2015-09-22,nicolemoss@testco.com,3,Product,PM
+23,female,Judy,Hansen,2015-07-07,judyhansen@testco.com,4,Sales,AE
+24,female,Dana,Stewart,2015-04-09,danastewart@testco.com,2,Marketing,Marketing Manager
+27,male,Kevin,Graham,2015-02-27,kevingraham@testco.com,4,Marketing,Marketing Analyst
+30,male,Nicholas,Fisher,2015-06-15,nicholasfisher@testco.com,2,Marketing,Marketing Analyst
+32,nonbinary,Tyler,Ryan,2016-04-04,tylerryan@testco.com,3,Customer Success,CSM
+33,male,Mario,Romero,2016-04-01,marioromero@testco.com,1,Sales,AE
+39,male,Anthony,Wolfe,2015-08-31,anthonywolfe@testco.com,3,Product,UX
+41,female,Anita,Vargas,2015-04-25,anitavargas@testco.com,3,Engineering,Data Eng
+45,male,Tyler,Phillips,2016-01-13,tylerphillips@testco.com,3,Customer Success,TSM
+51,female,Carolyn,Wood,2015-12-19,carolynwood@testco.com,4,Engineering,Data Eng
+60,male,Isaac,Strickland,2015-06-27,isaacstrickland@testco.com,1,Product,PM
+61,male,Matthew,Duran,2015-08-08,matthewduran@testco.com,3,Sales,AE
+63,female,Carolyn,Thomas,2015-05-24,carolynthomas@testco.com,1,Customer Success,CSE
+67,nonbinary,Christopher,Sanchez,2015-06-14,christophersanchez@testco.com,4,Marketing,Marketing Manager
+79,male,Anthony,Gilbert,2015-02-28,anthonygilbert@testco.com,4,Marketing,Marketing Manager
+81,male,Kevin,Miller,2016-01-06,kevinmiller@testco.com,1,Engineering,SWE
+85,male,Leroy,Medina,2015-06-06,leroymedina@testco.com,4,Product,UI
+86,male,Timothy,Miller,2016-01-28,timothymiller@testco.com,4,Marketing,Marketing Manager
+91,female,Nicole,Howell,2016-03-07,nicolehowell@testco.com,3,Engineering,SWE
+93,male,Kenneth,Chandler,2016-01-15,kennethchandler@testco.com,4,Marketing,Marketing Manager
 100,male,Jacob,Peterson,2015-05-30,jacobpeterson@testco.com,1,Customer Success,CSE
