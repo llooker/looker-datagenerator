@@ -8,6 +8,8 @@ import requests
 import random
 
 fake = Faker()
+
+
 class DataUtil:
     def __init__(self):
         self.location_data = self.generate_locations()
@@ -44,72 +46,83 @@ class DataUtil:
         return random.randrange(min_num, max_num)
 
     def snap_to_road(self, x_coord: float, y_coord: float) -> float:
-      coord = str(x_coord) + "," + str(y_coord)
-      url = f"https://roads.googleapis.com/v1/snapToRoads?path={coord}&interpolate=true&key={constants.GOOGLE_MAPS_API_KEY}"
-      payload={}
-      headers = {}
-      location = None
-      response = requests.request("GET", url, headers=headers, data=payload)
-      try:
-          location = json.loads(response.text)["snappedPoints"][0]["location"]
-      except:
-          location = response.text
-      return location
+        coord = str(x_coord) + "," + str(y_coord)
+        url = f"https://roads.googleapis.com/v1/snapToRoads?path={coord}&interpolate=true&key={constants.GOOGLE_MAPS_API_KEY}"
+        payload = {}
+        headers = {}
+        location = None
+        response = requests.request("GET", url, headers=headers, data=payload)
+        try:
+            location = json.loads(response.text)[
+                "snappedPoints"][0]["location"]
+        except:
+            location = response.text
+        return location
 
     def created_at(self, start_date: datetime.datetime) -> datetime.datetime:
-      end_date = datetime.datetime.now()
-      time_between_dates = end_date - start_date
-      days_between_dates = time_between_dates.days
-      if days_between_dates <= 1:
-          days_between_dates = 2
-      random_number_of_days = random.randrange(1, days_between_dates)
-      created_at = (
-          start_date
-          + datetime.timedelta(days=random_number_of_days))
-      return created_at
+        end_date = datetime.datetime.now()
+        time_between_dates = end_date - start_date
+        days_between_dates = time_between_dates.days
+        if days_between_dates <= 1:
+            days_between_dates = 2
+        random_number_of_days = random.randrange(1, days_between_dates)
+        created_at = (
+            start_date
+            + datetime.timedelta(days=random_number_of_days))
+        return created_at.date()
 
-    #get coordinates using Google Maps API
+    # get coordinates using Google Maps API
     def get_coordinates(self):
         # while location_found:
-        tmp_lat_coord = constants.MIN_LAT_COORD + self.random_float(constants.MIN_LAT_COORD_DIFF)
-        tmp_lng_coord = constants.MIN_LNG_COORD + self.random_float(constants.MIN_LNG_COORD_DIFF)
-        location = self.snap_to_road( tmp_lng_coord, tmp_lat_coord)
+        tmp_lat_coord = constants.MIN_LAT_COORD + \
+            self.random_float(constants.MIN_LAT_COORD_DIFF)
+        tmp_lng_coord = constants.MIN_LNG_COORD + \
+            self.random_float(constants.MIN_LNG_COORD_DIFF)
+        location = self.snap_to_road(tmp_lng_coord, tmp_lat_coord)
         while len(location) == 3:
-            tmp_lat_coord = constants.MIN_LAT_COORD + self.random_float(constants.MIN_LAT_COORD_DIFF)
-            tmp_lng_coord = constants.MIN_LNG_COORD + self.random_float(constants.MIN_LNG_COORD_DIFF)
+            tmp_lat_coord = constants.MIN_LAT_COORD + \
+                self.random_float(constants.MIN_LAT_COORD_DIFF)
+            tmp_lng_coord = constants.MIN_LNG_COORD + \
+                self.random_float(constants.MIN_LNG_COORD_DIFF)
             location = self.snap_to_road(tmp_lat_coord, tmp_lng_coord)
         return location
 
-    #read from local csv and return locations
+    # read from local csv and return locations
     def generate_locations(self):
-        location_data  = []
+        location_data = []
         with open("helper/world_pop.csv", encoding="utf-8") as worldcsv:
             csvReader = csv.DictReader(worldcsv)
             for rows in csvReader:
                 location_data.append(rows)
         return location_data
 
-    #returns random address based off specified distribution
-    def get_address(self, *, country='*',state='*',postal_code='*'):
+    # returns random address based off specified distribution
+    def get_address(self, *, country='*', state='*', postal_code='*'):
         # country = '*' OR country = 'USA' OR country={'USA':.75,'UK':.25}
         # state = '*' OR state = 'California' OR state={'California':.75,'New York':.25}
         # postal_code = '*' OR postal_code = '95060' OR postal_code={'94117':.75,'95060':.25}
         universe = []
         if postal_code != '*':
             if type(postal_code) == str:
-                universe += list(filter(lambda row: row['postal_code'] == postal_code, self.location_data))
+                universe += list(
+                    filter(lambda row: row['postal_code'] == postal_code, self.location_data))
             elif type(postal_code) == dict:
-                universe += list(filter(lambda row: row['postal_code'] in postal_code.keys(), self.location_data))
+                universe += list(filter(lambda row: row['postal_code']
+                                 in postal_code.keys(), self.location_data))
         if state != '*':
             if type(state) == str:
-                universe += list(filter(lambda row: row['state'] == state, self.location_data))
+                universe += list(filter(lambda row: row['state']
+                                 == state, self.location_data))
             elif type(state) == dict:
-                universe += list(filter(lambda row: row['state'] in state.keys(), self.location_data))
+                universe += list(filter(lambda row: row['state']
+                                 in state.keys(), self.location_data))
         if country != '*':
             if type(country) == str:
-                universe += list(filter(lambda row: row['country'] == country, self.location_data))
+                universe += list(filter(lambda row: row['country']
+                                 == country, self.location_data))
             elif type(country) == dict:
-                universe += list(filter(lambda row: row['country'] in country.keys(), self.location_data))
+                universe += list(filter(lambda row: row['country']
+                                 in country.keys(), self.location_data))
         if len(universe) == 0:
             universe = self.generate_locations()
 
@@ -123,14 +136,15 @@ class DataUtil:
             if type(state) == dict:
                 if loc['state'] in state.keys():
                     loc['population'] = state[loc['state']] * \
-                        (loc['population']/sum([loc2['population'] for loc2 in universe if loc['state']==loc2['state']])) * \
-                            total_pop
+                        (loc['population']/sum([loc2['population'] for loc2 in universe if loc['state'] == loc2['state']])) * \
+                        total_pop
             if type(country) == dict:
                 if loc['country'] in country.keys():
-                    loc['population'] = country[loc['country']] * (loc['population']/sum([loc2['population'] for loc2 in universe if loc['country']==loc2['country']])) * \
-                            total_pop
+                    loc['population'] = country[loc['country']] * (loc['population']/sum([loc2['population'] for loc2 in universe if loc['country'] == loc2['country']])) * \
+                        total_pop
 
-        loc = random.choices(universe, weights = [loc['population']/total_pop for loc in universe])[0]
+        loc = random.choices(universe, weights=[
+                             loc['population']/total_pop for loc in universe])[0]
         return {
             'street_address': fake.street_address(),
             'city': loc['city'],
@@ -140,4 +154,3 @@ class DataUtil:
             'latitude': loc["latitude"],
             'longitude': loc['longitude']
         }
-
