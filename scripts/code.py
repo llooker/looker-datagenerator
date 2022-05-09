@@ -116,7 +116,6 @@ class Table:
 
 env = Environment(loader=file_loader, extensions=['jinja2.ext.do'])
 template = env.get_template("datagen_template.py.jinja2")
-# template = env.get_template("ecomm_template.py.jinja2")
 template.globals['Table'] = Table()
 
 # read yaml file
