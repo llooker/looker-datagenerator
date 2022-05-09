@@ -48,7 +48,7 @@ datasets/
 
 | Folder   | Description                                                         |
 | -------- | ------------------------------------------------------------------- |
-| `$DATASET`   | directory containing your dataset files                 |
+| `$DATASET`   | contains your dataset files                 |
 | `code`   | contains the python code used to generate your data                 |
 | `yaml`   | contains your YAML file that defines your schema/data relationships |
-| `output` | directory containing your raw genereated data (csv)                 |
+| `output` | contains your raw genereated data output (csv)                 |
