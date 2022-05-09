@@ -68,16 +68,10 @@ This will create your `yaml.py` file within your dataset's YAML directory `$DATA
 
 3. Run your python code to generate the output(s) of your dataset. 
 
-From the ***root directory*** (replace `MY_CUSTOM_CODE.py` with your dataset's code file name
+From the ***root directory*** (replace `$DATASET` with your dataset name, replace `MY_CUSTOM_CODE.py` with your dataset's `.py` file name)
 
 ```
 python scripts/datasets/$DATASET/code/MY_CUSTOM_CODE.py`
-```
-
-From your dataset's directory `$DATASET/code` (replace `MY_CUSTOM_CODE.py` with your dataset's code file name):
-
-```
-python MY_CUSTOM_CODE.py`
 ```
 
 Running your code will generate raw files for your schema into the `$DATASETS/output` directory
