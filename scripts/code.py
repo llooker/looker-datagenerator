@@ -1,8 +1,10 @@
 from jinja2 import Environment, FileSystemLoader
+
+import click
+import os
 import yaml
 
-file_loader = FileSystemLoader("templates")
-
+file_loader = FileSystemLoader("../templates")
 
 class Table:
     def table_name(self, table):
@@ -112,16 +114,36 @@ class Table:
         #     return f"\t\tself.{key} = ##FILL ME INNNNN\n"
         #     return f"{key}, {value}"
 
-
 env = Environment(loader=file_loader, extensions=['jinja2.ext.do'])
-template = env.get_template("wow_template.py.jinja2")
+template = env.get_template("datagen_template.py.jinja2")
 # template = env.get_template("ecomm_template.py.jinja2")
 template.globals['Table'] = Table()
 
 # read yaml file
-with open("yaml/job_listings.yaml", "r") as val:
-    values = yaml.safe_load(val)
-    output = template.render(tables=values)
-    # write python file
-    with open("fake.py", "w") as out:
-        out.write(output)
+
+@click.command()
+@click.option('--dataset', prompt='Your dataset name',
+              help='Name of your dataset')
+@click.option('--yaml_file', prompt='Your YAML file',
+              help='Name of your YAML file')
+@click.option('--num_of_records', default=100, prompt='Number of rows to generate',
+              help='Number of rows to generate')
+def generate_code(dataset:str, yaml_file:str, num_of_records:int):
+    with open(f"../datasets/{dataset}/yaml/{yaml_file}.yaml", "r") as val:
+        values = yaml.safe_load(val)
+        output = template.render(tables=values, yaml_file=yaml_file, num_of_records=num_of_records)
+        # write python file
+        with open(f"../datasets/{dataset}/code/{yaml_file}.py", "w") as out:
+            out.write(output)
+
+
+if __name__ == '__main__':
+    generate_code()
+
+def create_or_update_dir(dir_path: str):
+    try:
+        os.mkdir(dir_path)
+    except OSError:
+        print ("Creation of the directory %s failed" % path)
+    else:
+        print ("Successfully created the directory %s " % path)

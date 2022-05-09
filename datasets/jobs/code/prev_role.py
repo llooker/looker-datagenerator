@@ -11,15 +11,13 @@ titles_by_org = {
 
 today = datetime.date.today()
 
-with open('data/employees.csv', 'r+', newline='') as obj:
-    dict_reader = csv.DictReader(obj)
-    dict_writer = csv.writer(obj)
-
-    for row in list(dict_reader):
+with open('data/employees.csv', 'a', newline='') as obj:
+    employee_data = csv.DictReader(obj)
+    print(employee_data)
+    for row in employee_data:
+        print({"000 row": row})
         days_since_hired = (today -
                             (datetime.datetime.strptime(
                                 row["hired_date"], '%Y-%m-%d').date())).days
-        if days_since_hired / 365 > 6:
-            row["title"] = random.choices(
-                [i for i in titles_by_org[row["org"].lower().replace(' ', '_')] if i != row["org"]])[0]
-            dict_writer.writerow(row.values())
+        print({"000 days_since_hired": days_since_hired})
+    employee_data.close()
