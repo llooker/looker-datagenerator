@@ -52,3 +52,32 @@ datasets/
 | `code`   | contains the python code used to generate your data                 |
 | `yaml`   | contains your YAML file that defines your schema/data relationships |
 | `output` | contains your raw genereated data output (csv)                 |
+
+### Set Up your Dataset and generate data
+
+1. Within your `$DATASET/yaml` directory add your custom YAML file(s)
+2. From the root directory, run `generate_code.py` to create the Python code for your YAML file(s)
+
+```
+python scripts/generate_code.py \
+    --dataset $DATASET \
+    --yaml_file $YAML_FILE \
+    --num_of_records $NUM_OF_RECORDS 
+```
+This will create your `yaml.py` file within your dataset's YAML directory `$DATASET/yaml/`
+
+3. Run your python code to generate the output(s) of your dataset. 
+
+From the ***root directory*** (replace `MY_CUSTOM_CODE.py` with your dataset's code file name
+
+```
+python scripts/datasets/$DATASET/code/MY_CUSTOM_CODE.py`
+```
+
+From your dataset's directory `$DATASET/code` (replace `MY_CUSTOM_CODE.py` with your dataset's code file name):
+
+```
+python MY_CUSTOM_CODE.py`
+```
+
+Running your code will generate raw files for your schema into the `$DATASETS/output` directory
