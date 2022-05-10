@@ -4,7 +4,7 @@ import click
 import os
 import yaml
 
-file_loader = FileSystemLoader("../templates")
+file_loader = FileSystemLoader("./templates")
 
 class Table:
     def table_name(self, table):
@@ -110,9 +110,7 @@ class Table:
         elif "words" in value:
             max_words = value["words"]["max"]
             return f"\t\tself.{key} = fake.sentence(nb_words={max_words})\n"
-        # else:
-        #     return f"\t\tself.{key} = ##FILL ME INNNNN\n"
-        #     return f"{key}, {value}"
+
 
 env = Environment(loader=file_loader, extensions=['jinja2.ext.do'])
 template = env.get_template("datagen_template.py.jinja2")
@@ -128,11 +126,11 @@ template.globals['Table'] = Table()
 @click.option('--num_of_records', default=100, prompt='Number of rows to generate',
               help='Number of rows to generate')
 def generate_code(dataset:str, yaml_file:str, num_of_records:int):
-    with open(f"../datasets/{dataset}/yaml/{yaml_file}.yaml", "r") as val:
+    with open(f"./datasets/{dataset}/yaml/{yaml_file}.yaml", "r") as val:
         values = yaml.safe_load(val)
         output = template.render(tables=values, yaml_file=yaml_file, num_of_records=num_of_records)
         # write python file
-        with open(f"../datasets/{dataset}/code/{yaml_file}.py", "w") as out:
+        with open(f"./datasets/{dataset}/code/{yaml_file}.py", "w") as out:
             out.write(output)
 
 
