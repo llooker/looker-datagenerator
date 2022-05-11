@@ -70,7 +70,7 @@ class Table:
         if value["type"] == "datetime" and "min_date" in value:
             date = value["min_date"]
             return f"\t\tself.{key} = self.created_at(datetime.datetime({date['year']}, {date['month']}, {date['day']}))\n"
-        elif all(k in value for k in ("values", "distribution")):
+        elif all(k in value for k in ("values", "distribution")) and value["type"] == "str":
             return f"\t\tself.{key} = self.random_item(population={value['values']}, distribution={value['distribution']})\n"
         elif "values" in value:
             return f"\t\tself.{key} = self.random_item(population={value['values']})\n"
@@ -97,11 +97,24 @@ class Table:
                     output += f"\t\t\tself.{key} = fake.first_name_{i}()\n"
                 return output
             elif len(value["depends_on"]) == 1 and "mapping" in value:
-                dependent_var = value["depends_on"][0]
-                for i in table[dependent_var]["values"]:
-                    output += f"\t\tif self.{dependent_var} == '{i}':\n"
-                    output += f"\t\t\tself.{key} = self.random_item(population={table[key]['mapping'][i]})\n"
-                return output
+                if value["type"] == "str":
+                    dependent_var = value["depends_on"][0]
+                    for i in table[dependent_var]["values"]:
+                        output += f"\t\tif self.{dependent_var} == '{i}':\n"
+                        output += f"\t\t\tself.{key} = self.random_item(population={table[key]['mapping'][i]})\n"
+                    return output
+                elif value["type"] == "float":
+                    dependent_var = value["depends_on"][0]
+                    for i in table[dependent_var]["values"]:
+                        output += f"\t\tif self.{dependent_var} == '{i}':\n"
+                        output += f"\t\t\tself.{key} = self.random_float({table[key]['mapping'][i][0]}, {table[key]['mapping'][i][1]})\n"
+                    return output
+                elif value["type"] == "int":
+                    dependent_var = value["depends_on"][0]
+                    for i in table[dependent_var]["values"]:
+                        output += f"\t\tif self.{dependent_var} == '{i}':\n"
+                        output += f"\t\t\tself.{key} = self.random_int({table[key]['mapping'][i][0]}, {table[key]['mapping'][i][1]})\n"
+                    return output
         elif "foreign_key" in value:
             return f"\t\tself.{key} == {value['foreign_key']}\n"
         elif "dist" in value:

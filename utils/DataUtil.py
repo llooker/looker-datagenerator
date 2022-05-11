@@ -39,8 +39,8 @@ class DataUtil:
         else:
             return random.choices(population=population)[0]
 
-    def random_float(self, max_num) -> float:
-        return random.uniform(0, max_num)
+    def random_float(self, min_num, max_num) -> float:
+        return random.uniform(min_num, max_num)
 
     def random_int(self, min_num, max_num) -> int:
         return random.randrange(min_num, max_num)

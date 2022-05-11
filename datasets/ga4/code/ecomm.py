@@ -74,8 +74,8 @@ class Orders(DataUtil.DataUtil):
 if __name__ == "__main__":
   for i in range(10):
     print(Users())
-    print(Orders())
-    
+    # print(Orders())
+
 keys = users_out[0].keys()
 a_file = open(f"../output/users.csv", "w")
 dict_writer = csv.DictWriter(a_file, keys)
