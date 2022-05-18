@@ -83,14 +83,16 @@ class Table:
         elif key == "email" and "domain" not in value:
             return f"\t\tself.{key} = f'{{self.first_name.lower()}}{{self.last_name.lower()}}@{{fake.safe_domain_name()}}'\n"
         elif key == "user_name":
-            return f"\t\tself.{key} = fake.user_name()"
+            return f"\t\tself.{key} = fake.user_name()\n"
         elif "path" in key:
-            return f"\t\tself.{key} = fake.uri_path()"
+            return f"\t\tself.{key} = fake.uri_path()\n"
         elif "random_digits" in value:
             return f"\t\tself.{key} = fake.bothify('#' * {value['random_digits']})\n"
+        elif key == "country" and value["address_type"] == "faker":
+            return f"\t\tself.{key} = fake.country()\n"
         elif "depends_on" in value:
             # single dependency
-            if len(value["depends_on"]) == 1 and value["depends_on"][0] == "gender":
+            if len(value["depends_on"]) == 1 and value["depends_on"][0] == "gender" and value["type"] == "str":
                 dependent_var = value["depends_on"][0]
                 for i in table[dependent_var]["values"]:
                     output += f"\t\tif self.{dependent_var} == '{i}':\n"
@@ -101,7 +103,10 @@ class Table:
                     dependent_var = value["depends_on"][0]
                     for i in table[dependent_var]["values"]:
                         output += f"\t\tif self.{dependent_var} == '{i}':\n"
-                        output += f"\t\t\tself.{key} = self.random_item(population={table[key]['mapping'][i]})\n"
+                        if len(table[key]['mapping'][i]) > 1:
+                            output += f"\t\t\tself.{key} = self.random_item(population={table[key]['mapping'][i]})\n"
+                        if len(table[key]['mapping'][i]) == 1:
+                            output += f"\t\t\tself.{key} = '{table[key]['mapping'][i][0]}'\n"
                     return output
                 elif value["type"] == "float":
                     dependent_var = value["depends_on"][0]

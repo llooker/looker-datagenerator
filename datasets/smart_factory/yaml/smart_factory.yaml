@@ -31,7 +31,33 @@ Sensor_Data:
             ["Placement Machine Background Vibration Z-Axis Gyroscope"],
         },
     }
-  sensor_id: { type: str, depends_on: ["sensor_category"] }
+  sensor_id:
+    {
+      type: str,
+      depends_on: ["sensor_category"],
+      mapping:
+        {
+          "Humidity":
+            [
+              "mtn-us1-svl-mp4-east1-pcba7-4ro-3-1",
+              mtn-us1-svl-mp4-east1-pcba7-1sp-2-2,
+            ],
+          "Quality":
+            [
+              "mtn-us1-svl-mp4-east1-pcba7-4ro-q",
+              "mtn-us1-svl-mp4-east1-pcba7-2pm-q",
+              "mtn-us1-svl-mp4-east1-pcba7-1sp-q",
+            ],
+          "Temperature":
+            [
+              "mtn-us1-svl-mp4-east1-pcba7-4ro-3-2",
+              "mtn-us1-svl-mp4-east1-pcba7-1sp-2-3",
+            ],
+          "Flow": ["mtn-us1-svl-mp4-east1-pcba7-1sp-2-1"],
+          "VibrationAcceleration": ["mtn-us1-svl-mp4-east1-pcba7-2pm-1-1"],
+          "Vibration": ["mtn-us1-svl-mp4-east1-pcba7-2pm-1-2"],
+        },
+    }
   sensor_value_unit:
     {
       type: str,
@@ -50,3 +76,31 @@ Sensor_Data:
           "mm/s^2": [-16, 16],
         },
     }
+Equipment:
+  id: { type: str, primary_key: True }
+  name:
+    {
+      type: str,
+      values:
+        [
+          "ReflowOven WorkCell",
+          "StencilPrinter WorkCell",
+          "PlacementMachine WorkCell",
+        ],
+    }
+  type:
+    {
+      type: str,
+      depends_on: ["name"],
+      mapping:
+        {
+          "ReflowOven WorkCell": ["Cym-30-RO"],
+          "StencilPrinter WorkCell": ["Cym-10-SP"],
+          "PlacementMachine WorkCell": ["Cym-20-PM"],
+        },
+    }
+
+Product:
+  id: { type: str, primary_key: True }
+  productype_id: { type: str, values: ["p-lidarcontroll-A5244-R2"] }
+  created_at: { type: datetime, min_date: { year: 2022, month: 1, day: 1 } }

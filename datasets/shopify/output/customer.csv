@@ -1,0 +1,51 @@
+id,accepts_markting,created_at,gender,first_name,last_name,email,phone_number,tax_exempt,total_spend,country,verified_email
+1,no,2022-04-12,male,Jeffery,Sanchez,jefferysanchez@fakeshopify.com,001-567-951-7378x11430,no,188.72720907823037,Eritrea,no
+2,no,2022-02-25,female,Barbara,Higgins,barbarahiggins@fakeshopify.com,231-618-6913,yes,1869.9034608321047,United Arab Emirates,no
+3,no,2022-01-16,male,Fred,Gates,fredgates@fakeshopify.com,(452)966-6769,no,109.10613833537573,Samoa,yes
+4,no,2022-01-28,female,Carrie,Griffin,carriegriffin@fakeshopify.com,623-102-9587x8132,no,27.702328728168357,Liechtenstein,yes
+5,no,2022-01-11,male,Angel,Taylor,angeltaylor@fakeshopify.com,(472)597-1606x1714,yes,46.64978654713268,United Arab Emirates,yes
+6,no,2022-01-08,female,Danielle,Long,daniellelong@fakeshopify.com,885.128.3294x8658,no,1589.763039836738,Nauru,yes
+7,no,2022-03-30,male,Jesse,Harris,jesseharris@fakeshopify.com,158-598-1051,no,179.43672573956493,Rwanda,yes
+8,no,2022-02-28,male,Keith,Smith,keithsmith@fakeshopify.com,001-656-890-3514x28505,yes,246.18136579812077,Saint Lucia,no
+9,no,2022-01-02,female,Janet,Hutchinson,janethutchinson@fakeshopify.com,001-427-520-8740x88527,yes,1549.7849813387982,El Salvador,no
+10,no,2022-03-17,female,Anna,Holder,annaholder@fakeshopify.com,+1-876-714-2705x72075,no,889.5970283897138,Canada,no
+11,no,2022-05-11,female,Brandy,Sanchez,brandysanchez@fakeshopify.com,(271)531-6873x33349,no,273.91895839369874,Tuvalu,yes
+12,no,2022-04-18,male,Daniel,Forbes,danielforbes@fakeshopify.com,001-169-137-5559x014,yes,240.0739776424312,Belarus,yes
+13,no,2022-02-13,female,Jill,Roberts,jillroberts@fakeshopify.com,784-502-7915x617,no,1889.1200836220378,Fiji,no
+14,no,2022-03-29,female,Latoya,Adams,latoyaadams@fakeshopify.com,001-957-573-3722,yes,298.97609161633466,Tanzania,yes
+15,no,2022-05-15,male,James,Lamb,jameslamb@fakeshopify.com,180-563-0893x849,no,283.1103766555996,Nigeria,no
+16,no,2022-04-16,female,Carol,Miller,carolmiller@fakeshopify.com,(787)211-6926x10892,yes,815.4482442142563,Vietnam,no
+17,no,2022-01-06,male,Brian,Harmon,brianharmon@fakeshopify.com,372.776.0615x5856,no,109.57013707227846,Libyan Arab Jamahiriya,no
+18,no,2022-02-17,female,Catherine,Cunningham,catherinecunningham@fakeshopify.com,565.149.2191x043,no,282.0019553953044,Venezuela,no
+19,no,2022-01-25,female,Kayla,Hunt,kaylahunt@fakeshopify.com,244.940.7226,yes,1922.2945755962983,Mongolia,no
+20,no,2022-03-06,male,Devin,Nelson,devinnelson@fakeshopify.com,233-900-6040x9726,no,197.67586412076102,Morocco,yes
+21,no,2022-02-07,female,Maria,Jenkins,mariajenkins@fakeshopify.com,348-803-6701x168,no,1794.345764579243,Tuvalu,yes
+22,no,2022-03-15,male,Thomas,Taylor,thomastaylor@fakeshopify.com,417-770-2264x671,no,4.713137542669554,Korea,no
+23,no,2022-01-25,female,Elizabeth,Willis,elizabethwillis@fakeshopify.com,(214)927-1522x59133,yes,276.5804415326345,Solomon Islands,yes
+24,no,2022-02-13,female,Kristin,Snyder,kristinsnyder@fakeshopify.com,001-634-471-6083x45848,no,47.416784200994265,Guernsey,no
+25,no,2022-02-18,male,Dustin,Green,dustingreen@fakeshopify.com,741-863-2148x0330,yes,145.23113979541077,Madagascar,yes
+26,no,2022-03-04,female,Kimberly,White,kimberlywhite@fakeshopify.com,001-361-119-9279x53502,yes,1499.5652268194117,Samoa,no
+27,no,2022-03-08,female,Judy,Gray,judygray@fakeshopify.com,985.582.4831x00482,no,671.7888570105562,Sweden,yes
+28,yes,2022-04-13,male,Gary,Parks,garyparks@fakeshopify.com,(112)246-5792x349,no,18.14492469429806,Malawi,yes
+29,yes,2022-04-09,female,Wendy,Wheeler,wendywheeler@fakeshopify.com,+1-783-384-1852x1142,yes,399.8979669053415,Afghanistan,no
+30,no,2022-02-12,male,Benjamin,Stone,benjaminstone@fakeshopify.com,+1-374-204-9227,no,177.45607411866175,Gibraltar,no
+31,no,2022-04-18,female,Jamie,Mueller,jamiemueller@fakeshopify.com,576.986.3408,no,149.10401637100446,Sweden,no
+32,no,2022-01-27,male,Shawn,Andrews,shawnandrews@fakeshopify.com,2566297367,no,111.30866016768027,Cocos (Keeling) Islands,no
+33,yes,2022-05-10,female,Mariah,Johnson,mariahjohnson@fakeshopify.com,(822)888-0092x818,no,1027.9981949513544,Liberia,yes
+34,no,2022-02-26,female,Ashley,Salazar,ashleysalazar@fakeshopify.com,5270210698,no,563.3191457735124,Brazil,yes
+35,no,2022-01-10,male,Kenneth,Chapman,kennethchapman@fakeshopify.com,998.426.9656x57864,no,7.017901762773926,Poland,yes
+36,no,2022-03-05,male,Lawrence,Jenkins,lawrencejenkins@fakeshopify.com,001-435-438-0653x8734,yes,11.314146388309187,Taiwan,yes
+37,yes,2022-04-29,male,Keith,Oliver,keitholiver@fakeshopify.com,826.177.9190,yes,125.03003800970993,Japan,no
+38,no,2022-01-17,male,Jerry,Williams,jerrywilliams@fakeshopify.com,115.005.2852x62502,yes,4.968438959418053,Kenya,no
+39,no,2022-03-14,female,Kristy,Dawson,kristydawson@fakeshopify.com,044-604-7632,no,117.18372142007239,Mauritania,yes
+40,no,2022-01-11,female,Jessica,Shaw,jessicashaw@fakeshopify.com,370-083-1885x88900,yes,1101.2562469989464,Morocco,yes
+41,no,2022-01-27,male,Raymond,Mendez,raymondmendez@fakeshopify.com,518-742-3191x531,yes,136.60271555398538,Bangladesh,yes
+42,no,2022-04-20,male,Gabriel,Thompson,gabrielthompson@fakeshopify.com,+1-447-431-1218x45759,no,154.05381668738582,El Salvador,no
+43,no,2022-03-27,male,Tyler,Garza,tylergarza@fakeshopify.com,2119061992,yes,246.27168410263695,Burkina Faso,yes
+44,no,2022-01-09,female,Mary,Singleton,marysingleton@fakeshopify.com,+1-613-078-4239x618,yes,1930.6631906135037,Malawi,yes
+45,yes,2022-05-02,male,Joshua,Griffith,joshuagriffith@fakeshopify.com,917.036.1546x49583,no,116.1858421192934,Northern Mariana Islands,no
+46,no,2022-03-01,male,Ruben,Mccarthy,rubenmccarthy@fakeshopify.com,001-422-851-1988x8014,no,93.03494423009589,Panama,no
+47,no,2022-02-11,female,Heather,Johnson,heatherjohnson@fakeshopify.com,001-757-283-4699x119,no,808.4796262003771,Andorra,yes
+48,yes,2022-03-22,male,David,Roberts,davidroberts@fakeshopify.com,351-907-1568,yes,155.43319026239396,Dominican Republic,no
+49,no,2022-02-06,female,Rhonda,Alvarez,rhondaalvarez@fakeshopify.com,864-703-1247,yes,1343.8572825529875,Kuwait,no
+50,yes,2022-04-13,male,Dale,Cohen,dalecohen@fakeshopify.com,366-207-0243,yes,262.826123751167,Malaysia,no

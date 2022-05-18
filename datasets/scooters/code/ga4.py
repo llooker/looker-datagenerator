@@ -114,10 +114,10 @@ class Transactions(DataUtil.DataUtil):
 	cost: float = dataclasses.field(init=False)
 
 	customers:dataclasses.InitVar[typing.Any] = None
-	products:dataclasses.InitVar[typing.Any] = None
+	# products:dataclasses.InitVar[typing.Any] = None
 	def __post_init__(self, customers=None, products=None):
 		self.customer_id = customers.id
-		self.product_id = logic_to_determine_product(Products())
+		self.product_id = logic_to_determine_product()
 		self.cost = self.random_int(0, 100)
 
 		transactions_out.append(dataclasses.asdict(self))

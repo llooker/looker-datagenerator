@@ -1,0 +1,51 @@
+created_at,sensor_category,sensor,sensor_id,sensor_value_unit,sensor_value
+2022-01-30,Vibration,Placement Machine Background Vibration Z-Axis Gyroscope,mtn-us1-svl-mp4-east1-pcba7-2pm-1-2,mm/s^2,-6.294732150151372
+2022-04-03,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,mm/s^2,-14.352383726243751
+2022-01-17,Vibration,Placement Machine Background Vibration Z-Axis Gyroscope,mtn-us1-svl-mp4-east1-pcba7-2pm-1-2,mm/s^2,7.630403975032831
+2022-05-01,Humidity,StencilPrinter Humidity,mtn-us1-svl-mp4-east1-pcba7-1sp-2-2,ml/s,0.507432810983875
+2022-02-23,Vibration,Placement Machine Background Vibration Z-Axis Gyroscope,mtn-us1-svl-mp4-east1-pcba7-2pm-1-2,mm/s^2,2.4476411989398166
+2022-02-03,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,C,177.10622190897314
+2022-02-01,Humidity,StencilPrinter Humidity,mtn-us1-svl-mp4-east1-pcba7-4ro-3-1,ml/s,0.8802990971402374
+2022-04-19,Temperature,ReflowOven Temperature,mtn-us1-svl-mp4-east1-pcba7-1sp-2-3,mm/s^2,13.269109186050368
+2022-04-06,Vibration,Placement Machine Background Vibration Z-Axis Gyroscope,mtn-us1-svl-mp4-east1-pcba7-2pm-1-2,%,24.29993270198587
+2022-02-04,VibrationAcceleration,Placement Machine Vibration Z-Axis Acceleration,mtn-us1-svl-mp4-east1-pcba7-2pm-1-1,mm/s^2,1.2636289314784896
+2022-03-02,Vibration,Placement Machine Background Vibration Z-Axis Gyroscope,mtn-us1-svl-mp4-east1-pcba7-2pm-1-2,%,8.131944485056819
+2022-05-11,Vibration,Placement Machine Background Vibration Z-Axis Gyroscope,mtn-us1-svl-mp4-east1-pcba7-2pm-1-2,ml/s,0.5342433152793327
+2022-03-10,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,mm/s^2,2.134085344133954
+2022-05-13,Humidity,StencilPrinter Humidity,mtn-us1-svl-mp4-east1-pcba7-4ro-3-1,C,68.25586611585985
+2022-04-06,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,C,27.641876339160177
+2022-01-23,Humidity,StencilPrinter Humidity,mtn-us1-svl-mp4-east1-pcba7-4ro-3-1,ml/s,0.3103551031551521
+2022-01-25,Humidity,ReflowOven Humidity,mtn-us1-svl-mp4-east1-pcba7-1sp-2-2,mm/s^2,-5.172733819431631
+2022-01-26,VibrationAcceleration,Placement Machine Vibration Z-Axis Acceleration,mtn-us1-svl-mp4-east1-pcba7-2pm-1-1,ml/s,0.42694973816357346
+2022-03-17,Quality,Visual Quality Inspection,mtn-us1-svl-mp4-east1-pcba7-2pm-q,C,154.5256378130797
+2022-04-22,Vibration,Placement Machine Background Vibration Z-Axis Gyroscope,mtn-us1-svl-mp4-east1-pcba7-2pm-1-2,mm/s^2,8.015792524950339
+2022-04-25,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,C,82.29019976224308
+2022-04-15,Temperature,ReflowOven Temperature,mtn-us1-svl-mp4-east1-pcba7-1sp-2-3,ml/s,0.6899249227273179
+2022-01-26,VibrationAcceleration,Placement Machine Vibration Z-Axis Acceleration,mtn-us1-svl-mp4-east1-pcba7-2pm-1-1,mm/s^2,-13.123374302176824
+2022-03-15,Humidity,ReflowOven Humidity,mtn-us1-svl-mp4-east1-pcba7-1sp-2-2,%,13.255469689508658
+2022-02-28,Humidity,ReflowOven Humidity,mtn-us1-svl-mp4-east1-pcba7-4ro-3-1,mm/s^2,9.648104833069983
+2022-02-11,VibrationAcceleration,Placement Machine Vibration Z-Axis Acceleration,mtn-us1-svl-mp4-east1-pcba7-2pm-1-1,%,44.62020278470245
+2022-01-29,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,mm/s^2,7.835471775499219
+2022-04-14,Vibration,Placement Machine Background Vibration Z-Axis Gyroscope,mtn-us1-svl-mp4-east1-pcba7-2pm-1-2,%,34.0761869173243
+2022-02-12,Humidity,ReflowOven Humidity,mtn-us1-svl-mp4-east1-pcba7-1sp-2-2,%,26.24477933592237
+2022-01-20,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,C,214.60474330007204
+2022-05-16,VibrationAcceleration,Placement Machine Vibration Z-Axis Acceleration,mtn-us1-svl-mp4-east1-pcba7-2pm-1-1,C,74.025949107783
+2022-02-11,Vibration,Placement Machine Background Vibration Z-Axis Gyroscope,mtn-us1-svl-mp4-east1-pcba7-2pm-1-2,ml/s,0.7001470233515522
+2022-04-10,Vibration,Placement Machine Background Vibration Z-Axis Gyroscope,mtn-us1-svl-mp4-east1-pcba7-2pm-1-2,%,23.215228192077518
+2022-05-16,Temperature,StencilPrinter Temperature,mtn-us1-svl-mp4-east1-pcba7-4ro-3-2,mm/s^2,-7.31105090547349
+2022-04-13,Humidity,StencilPrinter Humidity,mtn-us1-svl-mp4-east1-pcba7-4ro-3-1,C,110.64616965602322
+2022-03-01,Vibration,Placement Machine Background Vibration Z-Axis Gyroscope,mtn-us1-svl-mp4-east1-pcba7-2pm-1-2,mm/s^2,3.0073018223062213
+2022-05-16,Humidity,ReflowOven Humidity,mtn-us1-svl-mp4-east1-pcba7-4ro-3-1,C,197.98552395901172
+2022-04-16,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,%,8.865512051058055
+2022-04-18,Temperature,StencilPrinter Temperature,mtn-us1-svl-mp4-east1-pcba7-4ro-3-2,%,26.67193465703388
+2022-02-22,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,C,219.82543943136983
+2022-04-17,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,mm/s^2,6.470314742510563
+2022-03-16,Vibration,Placement Machine Background Vibration Z-Axis Gyroscope,mtn-us1-svl-mp4-east1-pcba7-2pm-1-2,%,15.272416219711518
+2022-05-04,VibrationAcceleration,Placement Machine Vibration Z-Axis Acceleration,mtn-us1-svl-mp4-east1-pcba7-2pm-1-1,mm/s^2,9.13416213118477
+2022-01-11,Temperature,StencilPrinter Temperature,mtn-us1-svl-mp4-east1-pcba7-4ro-3-2,C,134.35984479105093
+2022-04-14,VibrationAcceleration,Placement Machine Vibration Z-Axis Acceleration,mtn-us1-svl-mp4-east1-pcba7-2pm-1-1,C,173.31898489992565
+2022-02-19,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,%,11.426708692200101
+2022-04-28,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,ml/s,0.1688217098899733
+2022-04-29,Flow,StencilPrinter FlowRate,mtn-us1-svl-mp4-east1-pcba7-1sp-2-1,%,39.9955577590174
+2022-02-12,Humidity,ReflowOven Humidity,mtn-us1-svl-mp4-east1-pcba7-1sp-2-2,ml/s,0.00710284294137049
+2022-05-10,Humidity,StencilPrinter Humidity,mtn-us1-svl-mp4-east1-pcba7-4ro-3-1,C,58.68799382147871
