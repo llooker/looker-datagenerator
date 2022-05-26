@@ -1,0 +1,153 @@
+Token:
+  id: { type: int, primary_key: True }
+  token: { type: str }
+
+Transactions:
+  id: { type: int, primary_key: True }
+  token_id: { type: int, foreign_key: "token.id" }
+  date: { type: datetime, min_date: "1/1/2022" }
+  time: { type: datetime.time }
+  terminal_id: { type: int, foreign_key: "terminal.id" }
+  transaction_type_id: { type: int, foreign_key: "transaction_type.id" }
+  amount: { type: float, range: [20, 1000] }
+
+Transaction_History:
+  id: { type: int, primary_key: True }
+  transaction_id: { type: int, foreign_key: "transactions.id" }
+  event_id: { type: int, foreign_key: "events.id" }
+  timestamp: { type: datetime }
+  value: { type: int }
+  in_seq_pos: { type: int }
+
+Shops:
+  id: { type: int, primary_key: True }
+  street_name: { type: str }
+  street_num: { type: int, range: [1, 50] }
+  postal_code: { type: str }
+  city: { type: str }
+  company: { type: str }
+
+Events:
+  id: { type: int, primary_key: True }
+  code:
+    {
+      type: str,
+      values:
+        [
+          "crs",
+          "cr",
+          "cp",
+          "pofs",
+          "pofc",
+          "poff",
+          "pofv",
+          "ofd",
+          "ofa",
+          "pons",
+          "ponc",
+          "onr",
+          "2ar",
+          "ss",
+          "sf",
+          "sv",
+        ],
+    }
+  description:
+    {
+      type: str,
+      depends_on: ["code"],
+      mapping:
+        {
+          "crs": ["Card read started"],
+          "cr": ["Card read"],
+          "cp": ["CDCVM performed"],
+          "pofs": ["Offline PIN started"],
+          "pofc": ["Offline PIN canceled"],
+          "poff": ["Offline PIN failed"],
+          "pofv": ["Offline PIN entered"],
+          "ofd": ["Offline declined"],
+          "ofa": ["Offline approved"],
+          "pons": ["Online PIN started"],
+          "ponc": ["Online PIN canceled"],
+          "onr": ["Online result"],
+          "2ar": ["2nd AC rejected"],
+          "ss": ["Signature started"],
+          "sf": ["Signature failed"],
+          "sv": ["Signature verified"],
+        },
+    }
+  has_timestamp:
+    {
+      type: bool,
+      depends_on: ["code"],
+      mapping:
+        {
+          "crs": True,
+          "cr": True,
+          "cp": False,
+          "pofs": True,
+          "pofc": True,
+          "poff": True,
+          "pofv": True,
+          "ofd": False,
+          "ofa": False,
+          "pons": True,
+          "ponc": True,
+          "onr": True,
+          "2ar": False,
+          "ss": True,
+          "sf": True,
+          "sv": True,
+        },
+    }
+  has_value:
+    {
+      type: bool,
+      depends_on: ["code"],
+      mapping:
+        {
+          "crs": False,
+          "cr": False,
+          "cp": False,
+          "pofs": False,
+          "pofc": False,
+          "poff": False,
+          "pofv": False,
+          "ofd": False,
+          "ofa": False,
+          "pons": False,
+          "ponc": False,
+          "onr": True,
+          "2ar": False,
+          "ss": False,
+          "sf": False,
+          "sv": False,
+        },
+    }
+
+Card_Types:
+  id: { type: int, primary_key: True }
+  name:
+    {
+      type: str,
+      values:
+        [
+          "Contact EMV",
+          "Contactless EMV",
+          "Contactless Magstripe",
+          "Magstripe",
+        ],
+    }
+
+Transaction_Type:
+  id: { type: int, primary_key: True }
+  values:
+    {
+      type: str,
+      values:
+        ["Sale Transaction", "Reverse Authorization", "Refund Transaction"],
+    }
+
+Terminals:
+  id: { type: int, primary_key: True }
+  shop_id: { type: int, foreign_key: "shop.id" }

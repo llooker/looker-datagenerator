@@ -1,0 +1,17 @@
+id,description,has_timestamp,has_value
+1,Card read started,True,True
+2,Card read,True,True
+3,CDCVM performed,False,False
+4,Offline PIN started,True,True
+5,Offline PIN canceled,True,True
+6,Offline PIN failed,True,True
+7,Offline PIN entered,True,True
+8,Offline declined,False,False
+9,Offline approved,False,False
+10,Online PIN started,True,True
+11,Online PIN canceled,True,True
+12,Online result,True,True
+13,2nd AC rejected,False,False
+14,Signature started,True,True
+15,Signature failed,True,True
+16,Signature verified,True,True

@@ -2,6 +2,7 @@ from jinja2 import Environment, FileSystemLoader
 
 import click
 import os
+import re
 import yaml
 
 file_loader = FileSystemLoader("./templates")
@@ -68,8 +69,8 @@ class Table:
     def helper_parse_values(self, key, value, table):
         output = ""
         if value["type"] == "datetime" and "min_date" in value:
-            date = value["min_date"]
-            return f"\t\tself.{key} = self.created_at(datetime.datetime({date['year']}, {date['month']}, {date['day']}))\n"
+            min_date = re.split('-|/', value["min_date"])
+            return f"\t\tself.{key} = self.created_at(datetime.datetime({min_date[2]}, {min_date[0]}, {min_date[1]}))\n"
         elif all(k in value for k in ("values", "distribution")) and value["type"] == "str":
             return f"\t\tself.{key} = self.random_item(population={value['values']}, distribution={value['distribution']})\n"
         elif "values" in value:
@@ -90,6 +91,10 @@ class Table:
             return f"\t\tself.{key} = fake.bothify('#' * {value['random_digits']})\n"
         elif key == "country" and value["address_type"] == "faker":
             return f"\t\tself.{key} = fake.country()\n"
+        elif "max_range" in value:
+            val =  value["max_range"].split(" ")[0]
+            unit = value["max_range"].split(" ")[1]
+            return f"\t\tself.{key} = self.{value['depends_on'][0]} + datetime.timedelta({unit}=self.random_int(0,{val}))"
         elif "depends_on" in value:
             # single dependency
             if len(value["depends_on"]) == 1 and value["depends_on"][0] == "gender" and value["type"] == "str":
@@ -110,10 +115,18 @@ class Table:
                     return output
                 elif value["type"] == "float":
                     dependent_var = value["depends_on"][0]
-                    for i in table[dependent_var]["values"]:
-                        output += f"\t\tif self.{dependent_var} == '{i}':\n"
-                        output += f"\t\t\tself.{key} = self.random_float({table[key]['mapping'][i][0]}, {table[key]['mapping'][i][1]})\n"
-                    return output
+                    if "values" in table[dependent_var]:
+                        for i in table[dependent_var]["values"]:
+                            output += f"\t\tif self.{dependent_var} == '{i}':\n"
+                            output += f"\t\t\tself.{key} = self.random_float({table[key]['mapping'][i][0]}, {table[key]['mapping'][i][1]})\n"
+                        return output
+                    if "range" in table[dependent_var]:
+                        min_range = table[dependent_var]["range"][0]
+                        max_range = table[dependent_var]["range"][1]
+                        for i in range(min_range, max_range):
+                            output += f"\t\tif self.{dependent_var} == '{i}':\n"
+                            # print(table[key]['mapping'])
+                            output += f"\t\t\tself.{key} = self.random_float({table[key]['mapping'][i][0]}, {table[key]['mapping'][i][1]})\n"
                 elif value["type"] == "int":
                     dependent_var = value["depends_on"][0]
                     for i in table[dependent_var]["values"]:
@@ -121,10 +134,11 @@ class Table:
                         output += f"\t\t\tself.{key} = self.random_int({table[key]['mapping'][i][0]}, {table[key]['mapping'][i][1]})\n"
                     return output
         elif "foreign_key" in value:
-            return f"\t\tself.{key} == {value['foreign_key']}\n"
-        elif "dist" in value:
-            num = value["dist"]
-            return f"\t\tself.{key} = self.random_int({num['min']}, {num['max']})\n"
+            return f"\t\tself.{key} = {value['foreign_key']}\n"
+        elif "range" in value:
+            min = value["range"][0]
+            max = value["range"][1]
+            return f"\t\tself.{key} = self.random_{value['type']}({min}, {max})\n"
         elif "words" in value:
             max_words = value["words"]["max"]
             return f"\t\tself.{key} = fake.sentence(nb_words={max_words})\n"

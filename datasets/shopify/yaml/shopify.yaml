@@ -1,18 +1,55 @@
 Customer:
   id: { type: int, primary_key: True }
   accepts_markting: { type: str, values: ["yes", "no"], distribution: [.2, .8] }
-  created_at: { type: datetime, min_date: { year: 2022, month: 1, day: 1 } }
+  created_at: { type: datetime, min_date: "1/1/2022" }
   gender: { type: str, values: ["male", "female"], distribution: [.5, .5] }
   first_name: { type: str, depends_on: ["gender"] }
   last_name: { type: str }
   email: { type: str, domain: "fakeshopify.com" }
   phone_number: { type: str }
   tax_exempt: { type: str, values: ["yes", "no"] }
+  order_count: { type: int, range: [0, 10] }
   total_spend:
     {
       type: float,
-      depends_on: ["gender"],
-      mapping: { "male": [0, 300], "female": [0, 2000] },
+      depends_on: ["order_count"],
+      mapping:
+        {
+          0: [0, 0],
+          1: [0, 100],
+          2: [50, 150],
+          3: [100, 250],
+          4: [150, 300],
+          5: [250, 1000],
+          6: [500, 2000],
+          7: [700, 3000],
+          8: [800, 4000],
+          9: [900, 5000],
+          10: [1000, 6000],
+        },
     }
   country: { type: str, address_type: "faker" }
   verified_email: { type: str, values: ["yes", "no"] }
+# Collection:
+#   id: { type: int, primary_key: True }
+#   handle:
+#     {
+#       type: str,
+#       values: ["Spring Sale", "Winter Sale", "Summer Sale", "Fall Sale"],
+#     }
+#   title:
+#     {
+#       type: str,
+#       depends_on: ["handle"],
+#       mapping:
+#         {
+#           "Spring Sale": ["Spring Sale"],
+#           "Winter Sale": ["Winter Sale"],
+#           "Summer Sale": ["Summer Sale"],
+#           "Fall Sale": ["Fall Sale"],
+#         },
+#     }
+#   published_at: { type: datetime, min_date: "1/1/2022" }
+#   published_scope: { type: str, values: ["global", "webs"] }
+#   updated_at:
+#     { type: datetime, depends_on: ["published_at"], max_range: "5 days" }

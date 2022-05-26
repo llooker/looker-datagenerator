@@ -3,3 +3,4 @@ venv
 __pycache__
 constants.py
 my_project_env
+shopify_block

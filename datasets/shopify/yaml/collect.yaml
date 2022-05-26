@@ -1,0 +1,3 @@
+Collect:
+  id: { type: int, primary_key: True }
+  collection_id: { type: int, csv: "collection.id" }
