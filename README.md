@@ -2,6 +2,11 @@
 
 ### This repo contains a ficitious data-generator that handles relationships between tables and fields within table(s)
 
+Steps to Generate Synthetic Data
+1. Create **YAML** file ([example](https://github.com/llooker/looker-datagenerator/blob/main/datasets/ga4/yaml/ga4.yaml)) which specifies your data relationships and values
+2. Run `scripts/generate_code.py` to create the **Python Script** based on YAML
+3. Run the python script to produce ficitious output
+
 ### Setting up Enviornment
 
 1. Clone repo
